@@ -2,26 +2,24 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import re
-import os
-from PIL import Image
 
 # Sayfa Ayarları
 st.set_page_config(page_title="SNP-Spesifik CAPS Tasarlayıcı", layout="wide", initial_sidebar_state="collapsed")
 
-# Premium Dark Mode ve Siberpunk CSS (Hatalar Giderildi)
+# Premium Dark Mode ve Siberpunk CSS
 st.markdown("""
     <style>
     /* Arka planı logoya uygun koyu lacivert/siyah yap */
     .stApp {background-color: #030712;}
     
-    /* Temel metinler beyaz (div ve span çıkarıldı, çakışma önlendi) */
+    /* Temel metinler tam beyaz */
     h1, h2, h3, p, label {color: #ffffff !important;}
     
-    /* 🧬 Dizi Giriş Kutusu (Text Area) Özel Tasarımı - Biyoinformatik Terminal Havası */
+    /* 🧬 Dizi Giriş Kutusu - Biyoinformatik Terminal Havası */
     .stTextArea textarea {
         background-color: #020617 !important;
-        color: #00ffcc !important; /* Dizi harfleri neon camgöbeği parlayacak */
-        font-family: 'Courier New', Consolas, monospace !important; /* Kod fontu */
+        color: #00ffcc !important; 
+        font-family: 'Courier New', Consolas, monospace !important;
         font-size: 1.05rem !important;
         border: 2px solid #1e293b !important;
         border-radius: 8px;
@@ -66,14 +64,9 @@ st.markdown("""
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
-    # Sunucuya geçtiğinde buraya direkt link verebilirsin. Örn: st.image("https://...", use_container_width=True)
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    img_path = os.path.join(current_dir, "genom.jpg")
-    try:
-        img = Image.open(img_path)
-        st.image(img, use_container_width=True)
-    except FileNotFoundError:
-        st.warning("[Logo Sunucudan Çekilecek]")
+    # Doğrudan GitHub'ın Raw (Ham) sunucusundan resmi çeker
+    logo_url = "https://raw.githubusercontent.com/ibrahimcelikmbg15/-SNP-Spesifik-CAPS-Mark-r-Tasarlay-c-/main/genom.jpeg"
+    st.image(logo_url, use_container_width=True)
 
 with col_title:
     st.markdown("<h1>🧬 SNP-Spesifik CAPS Markör Tasarlayıcı v1.0</h1>", unsafe_allow_html=True)
